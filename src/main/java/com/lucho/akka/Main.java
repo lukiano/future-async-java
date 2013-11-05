@@ -58,7 +58,7 @@ public class Main {
 
             //javaFuture.thenAccept(System.out::println);
             javaFuture.thenAcceptAsync(System.out::println, (Executor) actorSystem.dispatcher());
-
+            javaFuture.join()
             javaFuture.get();
         } finally {
             actorSystem.shutdown();
