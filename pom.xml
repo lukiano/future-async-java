@@ -23,11 +23,35 @@
     </properties>
 
     <dependencies>
-
+<!--
         <dependency>
             <groupId>org.asynchttpclient</groupId>
             <artifactId>async-http-client-api</artifactId>
             <version>${async-httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.asynchttpclient</groupId>
+            <artifactId>async-http-client-netty-provider</artifactId>
+            <version>${async-httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.asynchttpclient</groupId>
+            <artifactId>async-http-client-spring</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+-->
+        <dependency>
+            <groupId>com.ning</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.8.0.Final</version>
         </dependency>
 
         <dependency>
@@ -80,15 +104,17 @@
         </dependency>
 
         <dependency>
-            <groupId>org.asynchttpclient</groupId>
-            <artifactId>async-http-client-netty-provider</artifactId>
-            <version>${async-httpclient.version}</version>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.10</artifactId>
+            <version>2.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.asynchttpclient</groupId>
-            <artifactId>async-http-client-spring</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.scalacheck</groupId>
+            <artifactId>scalacheck_2.10</artifactId>
+            <version>1.11.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -185,8 +211,8 @@
 
         <dependency>
             <groupId>com.netflix.rxjava</groupId>
-            <artifactId>rxjava-contrib</artifactId>
-            <version>0.14.6</version>
+            <artifactId>rxjava-scala</artifactId>
+            <version>${rxjava.version}</version>
         </dependency>
 
         <dependency>
@@ -262,6 +288,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-scala</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <version>2.0.2</version>
@@ -287,6 +320,40 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.1.6</version>
+                <configuration>
+                    <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>1.0-RC2</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <!--<filereports>TestSuite.txt</filereports>-->
+                    <junitxml>.</junitxml>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 

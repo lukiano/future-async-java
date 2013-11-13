@@ -3,7 +3,7 @@ package hello;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 
-import org.asynchttpclient.spring.NingAsyncClientHttpRequestFactory;
+import com.ning.http.client.spring.NingAsyncClientHttpRequestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.AsyncClientHttpRequestFactory;
