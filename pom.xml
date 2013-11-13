@@ -9,11 +9,15 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <spring.version>4.0.0.BUILD-SNAPSHOT</spring.version> <!-- 20131031.105251-359 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.0.0.RC1</spring.version> <!-- 20131031.105251-359 -->
+        <spring.integration.version>4.0.0.M1</spring.integration.version>
+        <reactor.version>1.0.0.RELEASE</reactor.version>
         <async-httpclient.version>2.0.0-SNAPSHOT</async-httpclient.version>
         <jetty.version>8.1.5.v20120716</jetty.version>
         <log4j2.version>2.0-beta9</log4j2.version>
-        <rxjava.version>0.14.6</rxjava.version>
+        <logback.version>1.0.13</logback.version>
+        <rxjava.version>0.14.10</rxjava.version>
         <akka.version>2.2.3</akka.version>
         <camel.version>2.12.1</camel.version>
     </properties>
@@ -29,6 +33,18 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -53,7 +69,7 @@
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-core</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.integration.version}</version>
         </dependency>
 
         <dependency>
@@ -77,14 +93,20 @@
 
         <dependency>
             <groupId>org.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>${reactor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectreactor</groupId>
             <artifactId>reactor-spring</artifactId>
-            <version>1.0.0.RC1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-expression</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${reactor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectreactor</groupId>
+            <artifactId>reactor-logback</artifactId>
+            <version>${reactor.version}</version>
         </dependency>
 
         <dependency>
@@ -100,6 +122,19 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+
+        <!--
+        <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
@@ -109,6 +144,19 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j2.version}</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <dependency>
@@ -121,12 +169,18 @@
             <groupId>com.netflix.rxjava</groupId>
             <artifactId>rxjava-apache-http</artifactId>
             <version>${rxjava.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.netflix.rxjava</groupId>
             <artifactId>rxjava-contrib</artifactId>
-            <version>${rxjava.version}</version>
+            <version>0.14.6</version>
         </dependency>
 
         <dependency>
