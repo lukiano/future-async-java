@@ -10,14 +10,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.0.0.RC1</spring.version> <!-- 20131031.105251-359 -->
+        <spring.version>4.0.0.RC2</spring.version> <!-- 20131031.105251-359 -->
         <spring.integration.version>4.0.0.M1</spring.integration.version>
         <reactor.version>1.0.0.RELEASE</reactor.version>
         <async-httpclient.version>2.0.0-SNAPSHOT</async-httpclient.version>
         <jetty.version>8.1.5.v20120716</jetty.version>
         <log4j2.version>2.0-beta9</log4j2.version>
         <logback.version>1.0.13</logback.version>
-        <rxjava.version>0.15.0</rxjava.version>
+        <rxjava.version>0.15.1</rxjava.version>
         <akka.version>2.2.3</akka.version>
         <camel.version>2.12.1</camel.version>
     </properties>
@@ -69,6 +69,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -255,6 +261,12 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-http4</artifactId>
             <version>${camel.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-servlet_2.5_spec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -298,6 +310,13 @@
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <version>2.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
